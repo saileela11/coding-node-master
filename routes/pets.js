@@ -19,8 +19,8 @@ router.post("/", validateBody(Joi.object().keys({
       const pet = new Pets(req.body);
       await pet.save();
       res.status(201).json(pet);
-    } catch (e) {
-      next(e);
+    } catch (exception) {
+      next(exception);
     }
   }
 );
@@ -30,8 +30,8 @@ router.get('/', async (req, res, next) => {
     const pets = await Pets.find().exec();
     res.status(200).json(pets);
   }
-  catch (e) {
-    next(e);
+  catch (exception) {
+    next(exception);
   }
 });
 

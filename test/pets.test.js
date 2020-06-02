@@ -75,6 +75,9 @@ describe('functional - pet', () => {
         expect(res.body.name).to.equal(pet.name);
         const petNameRes = await request(app).get('/pets/pet?name=' + pet.name).send();
         expect(petNameRes.status).to.equal(200);
+        expect(petNameRes.body[0].name).to.equal(pet.name);
+        expect(petNameRes.body[0].age).to.equal(pet.age);
+        expect(petNameRes.body[0].colour).to.equal(pet.colour);
 
     });
     it('Negative test- should fail when trying to search for a pet with out passing anything', async () => {
